@@ -1,0 +1,14 @@
+# Apache configuration for shifting site to /iUnity subfolder
+RewriteEngine On
+
+# Ensure /download (without trailing slash) cleanly resolves to /download/
+RewriteRule ^download$ download/ [R=301,L]
+
+# Optional: Uncomment the following lines if this .htaccess is placed at the ROOT (public_html)
+# of app.jointoda.com to automatically redirect all root traffic to https://app.jointoda.com/iUnity/
+#
+# RewriteCond %{REQUEST_URI} ^/$
+# RewriteRule ^$ /iUnity/ [R=301,L]
+
+# Ensure HTTPS and slash handling inside iUnity
+# Options +FollowSymLinks

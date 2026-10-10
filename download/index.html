@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO & Social Meta Tags -->
+  <title>Get iUnity | Download for Android & iOS</title>
+  <meta name="description" content="Connect with the global trucking community. Unite your voice and stay connected on the road. Download iUnity for Android and iOS.">
+  <meta name="author" content="Truck Owners and Drivers Association">
+  <meta name="robots" content="noindex, follow">
+
+  <!-- Google Fonts: Inter & JetBrains Mono (Matches iUnity Brand) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+  <style>
+    /* =========================================================
+       iUnity Smart Download — Unified Design Tokens
+       ========================================================= */
+    :root {
+      --background: #131313;
+      --on-background: #e5e2e1;
+      --surface-container-lowest: #0e0e0e;
+      --surface-container: #201f1f;
+      --surface-container-high: #2a2a2a;
+      --on-surface: #e5e2e1;
+      --on-surface-variant: #d8c3ad;
+
+      /* Primary Unity Amber Accent */
+      --primary: #ffc174;
+      --primary-container: #f59e0b;
+      --on-primary: #472a00;
+      --primary-glow: rgba(245, 158, 11, 0.3);
+
+      /* Tertiary Cyan Accent */
+      --tertiary: #8fd5ff;
+      --tertiary-container: #1abdff;
+
+      --outline: #a08e7a;
+      --outline-variant: #534434;
+
+      /* Border Radii */
+      --radius-default: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: clamp(1rem, 2vw, 1.5rem);
+      --radius-full: 9999px;
+
+      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--background);
+      color: var(--on-surface);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(20px, 4vw, 40px) 16px;
+      overflow-x: hidden;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient Background Highway Glows */
+    .ambient-blob {
+      position: fixed;
+      border-radius: var(--radius-full);
+      filter: blur(140px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.28;
+    }
+    .blob-1 {
+      width: clamp(280px, 40vw, 550px);
+      height: clamp(280px, 40vw, 550px);
+      background: radial-gradient(circle, var(--primary), transparent 70%);
+      top: -100px;
+      left: -100px;
+    }
+    .blob-2 {
+      width: clamp(300px, 45vw, 600px);
+      height: clamp(300px, 45vw, 600px);
+      background: radial-gradient(circle, var(--tertiary-container), transparent 70%);
+      bottom: -120px;
+      right: -100px;
+    }
+
+    /* Subtle Highway Grid Overlay */
+    .grid-pattern {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(83, 68, 52, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(83, 68, 52, 0.05) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.6;
+    }
+
+    /* Glass Container Card */
+    .download-card {
+      position: relative;
+      z-index: 10;
+      background: rgba(31, 41, 55, 0.4);
+      border: 1px solid rgba(83, 68, 52, 0.35);
+      border-radius: var(--radius-xl);
+      padding: clamp(32px, 5vw, 48px) clamp(24px, 4vw, 40px);
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
+      transition: border-color var(--transition-normal);
+    }
+
+    /* Brand Logo / Header */
+    .brand-logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--on-surface);
+      margin-bottom: 24px;
+    }
+    .brand-logo-text {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--on-surface);
+    }
+    .brand-logo-text span {
+      color: var(--primary);
+    }
+
+    /* Smartphone Icon Box with Radar Glow */
+    .icon-box {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-lg);
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      box-shadow: 0 0 24px var(--primary-glow);
+      margin-bottom: 20px;
+    }
+    .icon-box .material-symbols-outlined {
+      font-size: 32px;
+    }
+
+    /* Category Pill */
+    .label-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.22);
+      border-radius: var(--radius-full);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    /* Typography */
+    .card-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--on-surface);
+      margin-bottom: 12px;
+    }
+    .card-desc {
+      color: var(--on-surface-variant);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    /* =========================================================
+       Status & Redirect State
+       ========================================================= */
+    .status-panel {
+      margin-bottom: 24px;
+      padding: 16px;
+      border-radius: var(--radius-default);
+      background: rgba(14, 14, 14, 0.6);
+      border: 1px solid rgba(83, 68, 52, 0.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Spinner Animation */
+    .spinner-ring {
+      width: 32px;
+      height: 32px;
+      border: 3px solid rgba(245, 158, 11, 0.2);
+      border-top-color: var(--primary-container);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .status-text {
+      font-size: 0.9rem;
+      color: var(--on-surface);
+      font-weight: 500;
+    }
+    .status-subtext {
+      font-size: 0.75rem;
+      color: var(--on-surface-variant);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* =========================================================
+       Store Buttons (App Store & Google Play)
+       ========================================================= */
+    .store-buttons-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      margin-bottom: 24px;
+    }
+
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      width: 100%;
+      height: 56px;
+      padding: 0 20px;
+      border-radius: var(--radius-default);
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(24, 24, 24, 0.8);
+      color: #ffffff;
+      transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .store-btn svg {
+      width: 26px;
+      height: 26px;
+      flex-shrink: 0;
+      fill: currentColor;
+    }
+    .store-btn-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.15;
+      text-align: left;
+    }
+    .store-btn-sub {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .store-btn-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    /* Primary Accent on Target Store Button */
+    .store-btn-apple:hover,
+    .store-btn-apple.highlight {
+      border-color: rgba(255, 255, 255, 0.4);
+      background: rgba(45, 45, 45, 0.95);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      transform: translateY(-2px);
+    }
+    .store-btn-google:hover,
+    .store-btn-google.highlight {
+      border-color: rgba(245, 158, 11, 0.4);
+      background: rgba(35, 30, 22, 0.95);
+      box-shadow: 0 6px 20px var(--primary-glow);
+      transform: translateY(-2px);
+    }
+
+    /* Fallback Direct Action Button */
+    .btn-manual-redirect {
+      display: none;
+      width: 100%;
+      height: 52px;
+      background: var(--primary-container);
+      color: var(--on-primary);
+      border-radius: var(--radius-default);
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 18px var(--primary-glow);
+      margin-bottom: 20px;
+      transition: transform var(--transition-fast), background var(--transition-fast);
+    }
+    .btn-manual-redirect:hover {
+      background: #ffb95f;
+      transform: translateY(-2px);
+    }
+
+    /* Footer Navigation Link */
+    .continue-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--on-surface-variant);
+      text-decoration: none;
+      font-size: 0.825rem;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.04em;
+      padding: 6px 12px;
+      border-radius: var(--radius-default);
+      transition: color var(--transition-fast);
+    }
+    .continue-link:hover {
+      color: var(--primary);
+    }
+
+    /* Page Footer Copyright */
+    .page-footer {
+      position: relative;
+      z-index: 10;
+      margin-top: 24px;
+      color: var(--on-surface-variant);
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      text-align: center;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient highway grid texture & glowing blobs -->
+  <div class="grid-pattern" aria-hidden="true"></div>
+  <div class="ambient-blob blob-1" aria-hidden="true"></div>
+  <div class="ambient-blob blob-2" aria-hidden="true"></div>
+
+  <!-- Smart Download Card -->
+  <main class="download-card">
+    <div class="brand-logo-wrap">
+      <div class="icon-box" aria-hidden="true">
+        <span class="material-symbols-outlined">smartphone</span>
+      </div>
+    </div>
+
+    <div>
+      <span class="label-badge">JOIN THE GLOBAL SIGNAL</span>
+    </div>
+
+    <h1 class="card-title">Get iUnity</h1>
+    <p class="card-desc">Connect with the global trucking community. Unite your voice and stay connected on the road.</p>
+
+    <!-- Dynamic Status / Loading Indicator -->
+    <div class="status-panel" id="status-panel">
+      <div class="spinner-ring" id="status-spinner" aria-hidden="true"></div>
+      <p class="status-text" id="status-text">Detecting your device...</p>
+      <span class="status-subtext" id="status-subtext">Automatic App Store Dispatch</span>
+    </div>
+
+    <!-- Direct Action Button for Mobile Redirect Fallback -->
+    <a href="#" class="btn-manual-redirect" id="btn-manual-redirect">
+      <span class="material-symbols-outlined">download</span>
+      <span id="manual-btn-label">Open App Store</span>
+    </a>
+
+    <!-- Store Badges (Visible on Desktop / Fallback View) -->
+    <div class="store-buttons-container" id="store-buttons">
+      <!-- Apple App Store -->
+      <a href="https://apps.apple.com/us/app/iunity-for-truckers/id6792612777" 
+         class="store-btn store-btn-apple" 
+         id="btn-apple-store" 
+         target="_blank" 
+         rel="noopener noreferrer">
+        <svg viewBox="0 0 170 170" aria-hidden="true">
+          <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.04-7.67-7.85-11.93-14.42-6.53-10.12-11.77-21.75-15.7-34.9-3.93-13.15-5.9-25.59-5.9-37.33 0-15.34 3.8-28.09 11.39-38.25 7.6-10.15 17.1-15.34 28.51-15.56 5.56 0 11.45 1.51 17.67 4.52 6.23 3.01 10.32 4.58 12.28 4.7 1.76-.23 6.08-1.87 12.98-4.93 6.9-3.05 12.77-4.39 17.61-4.01 13.06.66 23.47 5.75 31.23 15.28-11.46 6.96-17.06 16.54-16.79 28.74.27 9.8 4.09 17.97 11.46 24.51 7.37 6.54 16.03 10.28 25.98 11.22-2.18 6.64-4.8 13.3-7.86 19.98zm-29.21-102.5c0-7.08 2.58-13.78 7.74-20.1 5.15-6.33 11.53-10.29 19.13-11.89.54 1.74.82 3.59.82 5.55 0 7.08-2.67 14.04-8.02 20.89-5.34 6.86-11.71 10.72-19.12 11.58-.33-2.07-.55-4.08-.55-6.03z"/>
+        </svg>
+        <div class="store-btn-text">
+          <span class="store-btn-sub">Download on the</span>
+          <span class="store-btn-title">Apple App Store</span>
+        </div>
+      </a>
+
+      <!-- Google Play Store -->
+      <a href="https://play.google.com/store/apps/details?id=com.jointoda.iunity&pcampaignid=web_share" 
+         class="store-btn store-btn-google" 
+         id="btn-google-play" 
+         target="_blank" 
+         rel="noopener noreferrer">
+        <svg viewBox="0 0 512 512" aria-hidden="true">
+          <path fill="#4285F4" d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1z"/>
+          <path fill="#34A853" d="M47 0C34 7.5 25.3 21.7 25.3 38.3v435.4c0 16.6 8.7 30.8 21.7 38.3l240-240L47 0z"/>
+          <path fill="#EA4335" d="M325.3 277.7l60.1 60.1L104.6 499l220.7-221.3z"/>
+          <path fill="#FBBC04" d="M486.7 230.9L385.4 174.2l-60.1 60.1 60.1 60.1 101.3-56.7c17.5-9.8 17.5-27 0-36.8z"/>
+        </svg>
+        <div class="store-btn-text">
+          <span class="store-btn-sub">Get it on</span>
+          <span class="store-btn-title">Google Play</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Small Continue Link to Main Landing Page -->
+    <div>
+      <a href="../iUnity/" class="continue-link" id="continue-link">
+        <span>Continue to website</span>
+        <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+      </a>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <p>© 2026 TODA (Truck Owners and Drivers Association Global Network). Driven by Unity.</p>
+  </footer>
+
+  <script>
+    // =========================================================
+    // STORE CONFIGURATION & DEVICE DETECTION
+    // =========================================================
+    const APP_STORE_URL = 'https://apps.apple.com/us/app/iunity-for-truckers/id6792612777';
+    const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.jointoda.iunity&pcampaignid=web_share';
+
+    /**
+     * Accurately detect device platform:
+     * - 'ios': iPhone, iPad, iPod, and modern iPadOS reporting MacIntel/Macintosh with touch points
+     * - 'android': Android smartphones and tablets
+     * - 'desktop': Windows, macOS (no touch), Linux, desktop browsers, or uncertain
+     */
+    function detectPlatform() {
+      // Allow testing override via URL parameter, e.g. ?platform=ios, ?platform=android, ?platform=desktop
+      const urlParams = new URLSearchParams(window.location.search);
+      const testPlatform = urlParams.get('platform');
+      if (testPlatform && ['ios', 'android', 'desktop'].includes(testPlatform.toLowerCase())) {
+        return testPlatform.toLowerCase();
+      }
+
+      const ua = navigator.userAgent || '';
+      const platform = navigator.platform || '';
+      const maxTouchPoints = navigator.maxTouchPoints || 0;
+
+      // 1. Traditional iOS (iPhone, iPad, iPod in userAgent)
+      const isTraditionalIOS = /iPhone|iPad|iPod/i.test(ua);
+
+      // 2. Modern iPadOS: Safari requests desktop site by default on iPadOS 13+.
+      // Reports 'MacIntel' or 'Macintosh' in UA, but has multi-touch capability.
+      const isModernIPad = (/Macintosh/i.test(ua) || platform === 'MacIntel') && 
+                           (maxTouchPoints > 1 || 'ontouchend' in document);
+
+      if (isTraditionalIOS || isModernIPad) {
+        return 'ios';
+      }
+
+      // 3. Android devices
+      if (/Android/i.test(ua)) {
+        return 'android';
+      }
+
+      // 4. Desktop, unsupported, or uncertain devices
+      return 'desktop';
+    }
+
+    // =========================================================
+    // EXECUTION & SMART REDIRECT LOGIC
+    // =========================================================
+    (function initSmartDownload() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const noRedirect = urlParams.get('noredirect') === '1' || urlParams.get('noredirect') === 'true';
+
+      const detected = detectPlatform();
+
+      const statusPanel = document.getElementById('status-panel');
+      const statusSpinner = document.getElementById('status-spinner');
+      const statusText = document.getElementById('status-text');
+      const statusSubtext = document.getElementById('status-subtext');
+      const manualBtn = document.getElementById('btn-manual-redirect');
+      const manualBtnLabel = document.getElementById('manual-btn-label');
+      const appleBtn = document.getElementById('btn-apple-store');
+      const googleBtn = document.getElementById('btn-google-play');
+
+      if (detected === 'ios') {
+        // --- iOS / iPad detected ---
+        statusText.textContent = 'Taking you to the Apple App Store...';
+        statusSubtext.textContent = 'iOS / iPadOS detected';
+        manualBtn.href = APP_STORE_URL;
+        manualBtnLabel.textContent = 'Open Apple App Store';
+        manualBtn.style.display = 'inline-flex';
+        if (appleBtn) appleBtn.classList.add('highlight');
+
+        if (!noRedirect) {
+          // Perform clean replacement redirect to prevent back-button loops
+          setTimeout(() => {
+            window.location.replace(APP_STORE_URL);
+          }, 350);
+        } else {
+          statusSpinner.style.display = 'none';
+          statusText.textContent = 'Redirect paused (?noredirect=1). Ready for Apple App Store.';
+        }
+
+      } else if (detected === 'android') {
+        // --- Android detected ---
+        statusText.textContent = 'Taking you to Google Play...';
+        statusSubtext.textContent = 'Android device detected';
+        manualBtn.href = PLAY_STORE_URL;
+        manualBtnLabel.textContent = 'Open Google Play Store';
+        manualBtn.style.display = 'inline-flex';
+        if (googleBtn) googleBtn.classList.add('highlight');
+
+        if (!noRedirect) {
+          // Perform clean replacement redirect
+          setTimeout(() => {
+            window.location.replace(PLAY_STORE_URL);
+          }, 350);
+        } else {
+          statusSpinner.style.display = 'none';
+          statusText.textContent = 'Redirect paused (?noredirect=1). Ready for Google Play.';
+        }
+
+      } else {
+        // --- Desktop or uncertain detection: Fallback View ---
+        // Do NOT automatically redirect. Show options cleanly.
+        if (statusSpinner) statusSpinner.style.display = 'none';
+        statusText.textContent = 'Available on Android and iOS';
+        statusSubtext.textContent = 'Select your platform to download';
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>iUnity | The Global Trucking Solidarity Signal</title>
+  <meta name="description"
+    content="Join the digital solidarity movement of truckers worldwide. iUnity provides collective route intelligence, encrypted data protocols, and sovereign logistics mapping.">
+  <meta name="keywords"
+    content="iUnity, TODA, trucker solidarity, logistics mapping, route intelligence, driver network, trucker community">
+  <meta name="author" content="TODA">
+  <link rel="canonical" href="https://app.jointoda.com/iUnity/">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:,">
+
+  <!-- Styling & Typography Links -->
+  <link rel="stylesheet" href="style.css?v=13">
+</head>
+
+<body class="bg-background text-on-surface">
+
+  <!-- Parallax Background Atmosphere Blobs -->
+  <div class="ambient-blob blob-primary" id="blob-primary"></div>
+  <div class="ambient-blob blob-tertiary" id="blob-tertiary"></div>
+
+  <!-- Top Navigation Bar -->
+  <header class="header-nav">
+    <div class="max-container nav-container">
+      <a href="index.html" class="nav-logo">iUnity</a>
+
+      <nav class="nav-links">
+        <a class="nav-link" href="#features">Features</a>
+        <a class="nav-link" href="#how-it-works">How It Works</a>
+        <a class="nav-link" href="#app-preview">App Preview</a>
+        <a class="nav-link" href="#community">Community</a>
+      </nav>
+
+      <button class="btn-primary" onclick="handleDownloadClick(event)">
+        Download Now
+      </button>
+
+      <!-- Hamburger Icon for Mobile -->
+      <button class="mobile-menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Side Navigation Overlay -->
+  <div class="mobile-nav-overlay" id="mobile-nav">
+    <a class="mobile-nav-link" href="#features" onclick="toggleMobileMenu()">Features</a>
+    <a class="mobile-nav-link" href="#how-it-works" onclick="toggleMobileMenu()">How It Works</a>
+    <a class="mobile-nav-link" href="#app-preview" onclick="toggleMobileMenu()">App Preview</a>
+    <a class="mobile-nav-link" href="#community" onclick="toggleMobileMenu()">Community</a>
+    <button class="btn-primary" onclick="toggleMobileMenu(); handleDownloadClick(event)">Download Now</button>
+  </div>
+
+  <main style="margin-top: clamp(56px, 8vw, 80px);">
+    <!-- Hero Section -->
+    <section class="hero-section max-container">
+      <div class="hero-grid">
+        <!-- Left Column: Branding, Title, Stats -->
+        <div class="hero-text">
+          <div class="hero-badge" style="margin-bottom: 8px;">
+            <span class="unity-signal"></span>
+            <span class="font-label-caps" style="color: var(--on-surface-variant);">THE GLOBAL SIGNAL</span>
+          </div>
+
+          <h1 class="font-display-lg hero-title">
+            Truckers of the<br>World, Unite!
+          </h1>
+
+          <div class="hero-doctrine font-headline-md"
+            style="color: var(--primary); margin-bottom: clamp(12px, 1.5vw, 20px); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; line-height: 1.4;">
+            <span style="color: #ffffff;">We are not Marginal</span><br>We are Foundational
+          </div>
+
+          <p class="font-body-lg hero-desc">
+            Join the digital Declaration of Unity. Reclaiming the highway through collective intelligence, advocacy, and
+            organized voice.
+          </p>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-num">1.2M+</div>
+              <div class="font-label-caps" style="color: var(--on-surface-variant);">Declared</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">4.8/5</div>
+              <div class="font-label-caps" style="color: var(--on-surface-variant);">Rating</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Glass App download card -->
+        <div class="hero-downloads" id="download-card-container">
+          <div class="glass-card unified-download-card">
+            <div class="download-icon-box" aria-hidden="true">
+              <span class="material-symbols-outlined download-main-icon">smartphone</span>
+            </div>
+            <span class="download-label font-label-caps">JOIN THE GLOBAL SIGNAL</span>
+            <h3 class="download-heading font-headline-lg">Get iUnity</h3>
+            <p class="download-desc font-body-md">Connect with the global trucking community. Unite your voice and stay
+              connected on the road.</p>
+            <button class="btn-primary download-btn" id="download-btn" onclick="handleDownloadClick(event)">
+              <span class="material-symbols-outlined" aria-hidden="true">download</span>
+              <span>Download iUnity</span>
+            </button>
+            <p class="download-subtext font-label-caps">Available for Android and <span class="brand-lower" style="text-transform: lowercase;">i</span>OS</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Features Section -->
+    <section class="features-section max-container" id="features">
+      <div class="section-title-wrapper">
+        <h2 class="font-headline-lg section-title">Sovereign Capabilities</h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="features-grid">
+        <!-- Feature Card 1 -->
+        <div class="glass-card feature-card">
+          <div class="feature-img-wrapper">
+            <img class="feature-img"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ9vwF9XcPp6F61tW40Eodm6fiIXJY5YdjLISnH0Fuh_8IXun5zmXj0waqjP7OWWLWKAAT-lpSClpRgQQNDXjxylBAFGxepWcOr_Dr7CrjTLV4wGYJauOz-XG_d8yn4hXxwYd7S6Z4mpSPcGTk3E4b7QXaCTRVqyUavHXgJNtn-mYzhAVYoDp_CVXrJFM0vEFkkbuq6iwJTS_VJfkYm21DBbXNwifxRIIN9RbfQoMLQ_kTjmHA0_9xmFXgd8Po-SC2OIId70ZFEW4"
+              alt="Global Signal Map">
+            <div class="feature-img-overlay"></div>
+          </div>
+          <h3 class="font-headline-md feature-title">Global Signal Map</h3>
+          <p class="font-body-md feature-desc">Real-time movement density visualized. See where the collective is
+            moving, breathing, and resting across the continent.</p>
+        </div>
+
+        <!-- Feature Card 2 -->
+        <div class="glass-card feature-card">
+          <div class="feature-img-wrapper">
+            <img class="feature-img"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfAmXYCdRKQzAAes328n2zA4tqh19S4D274ToszKWeam8lPJP8olShef3lXLorCPU2Vk5oMgfu56Fjp7uddqH25lDRl-RoUBkSqsuaz0nfJCVVggFf5EcBHf0fKR76wd5Z0Okf5ezrGnn6GrfgwgSyB8wDlrFFSmXmnVQrAw8pAWY3qwOCRcwHDsf9dahULQYMDTR8bZXJdrk6xpjF7IQLYHhfgYXDFGVKFnC_rezTRpbttHp-kOks2eUHWZ29gK_p8Sx6XeA0x7o"
+              alt="Pure Signal Protocol">
+            <div class="feature-img-overlay"></div>
+          </div>
+          <h3 class="font-headline-md feature-title">Pure Signal Doctrine</h3>
+          <p class="font-body-md feature-desc">The sovereign protocol for logistics data. No intermediaries. No
+            surveillance. Just pure, encrypted intelligence for truckers.</p>
+        </div>
+
+        <!-- Feature Card 3 -->
+        <div class="glass-card feature-card">
+          <div class="feature-img-wrapper">
+            <img class="feature-img" src="collective_voice_convoy.png?v=2" alt="Collective Voice Convoy">
+            <div class="feature-img-overlay"></div>
+          </div>
+          <h3 class="font-headline-md feature-title">Collective Voice</h3>
+          <p class="font-body-md feature-desc">Unified legislative power. Mobilize the industry to demand better
+            conditions and protect the future of the open road.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works (Bento Layout) -->
+    <section class="bento-section max-container" id="how-it-works">
+      <div class="section-title-wrapper">
+        <h2 class="font-headline-lg section-title">How It Works</h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Bento Card 1: Large Featured Card -->
+        <div class="glass-card bento-card-large">
+          <img class="bento-bg-img"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNL7msH6oq40WGVU0orMe9TBdSOyzbr6TTBOrVCe_dxEvDaLN6OS9oFxhoTFYrW5YWdxkWNrSgbVBIsMSA4aPs_lffjRs-lXc5lan64PQXXAuFGYEKmpZu38Dzrurr1ypkhxlepJgs4dSkE_QUb86i7mrDlnQ642ACJUaWn--2Bo4WJzIJeaOhM1coJRBu6fvtHV4ECKSO1Zp8em8kjtV1nV7Sn2ONvvxqq5i2ILRHor0IYzCa2bayOwlvSZR7y5NhGUYDXueoOGQ"
+            alt="Truck driving at night">
+          <div class="bento-num num-1">1</div>
+          <div class="font-label-caps" style="color: var(--primary); margin-bottom: 8px;">#JoinTODA</div>
+          <h3 class="font-headline-lg" style="margin-bottom: 16px; color: var(--on-surface);">Truckers of the World,
+            Unite!</h3>
+          <p class="font-body-lg" style="color: var(--on-surface-variant); max-width: 480px; margin-bottom: 16px;">
+            Download the iUnity application to begin your integration into the Truck Owners and Drivers Association
+            Global Network.</p>
+        </div>
+
+        <!-- Bento Card 2: Row Card 2 -->
+        <div class="glass-card bento-card-row border-primary">
+          <div class="bento-row-header">
+            <div class="bento-num num-2" style="margin-bottom: 0;">2</div>
+            <div style="flex: 1;">
+              <div class="font-label-caps" style="color: var(--primary); margin-bottom: 4px;">Declare Identity</div>
+              <h3 class="font-headline-md" style="margin-bottom: 8px; color: var(--on-surface);">I am not Marginal</h3>
+              <p class="font-body-md" style="color: var(--on-surface-variant); margin-bottom: 12px;">Declare your
+                identity and establish your place within the global network of truck owners and drivers.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 3: Row Card 3 -->
+        <div class="glass-card bento-card-row border-tertiary">
+          <div class="bento-row-header">
+            <div class="bento-num num-3" style="margin-bottom: 0;">3</div>
+            <div style="flex: 1;">
+              <div class="font-label-caps" style="color: var(--tertiary); margin-bottom: 4px;">Synchronize Signal</div>
+              <h3 class="font-headline-md" style="margin-bottom: 8px; color: var(--on-surface);">I am Foundational</h3>
+              <p class="font-body-md" style="color: var(--on-surface-variant); margin-bottom: 12px;">Synchronize your
+                voice with the collective intelligence of truckers worldwide.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- App Preview Section -->
+    <section class="preview-section" id="app-preview">
+      <div class="max-container">
+        <div class="section-title-wrapper" style="margin-bottom: 48px;">
+          <span class="font-label-caps" style="color: var(--primary); display: block; margin-bottom: 12px;">PREMIUM
+            INTERFACE</span>
+          <h2 class="font-display-lg section-title" style="font-size: 3rem;">Designed for Truckers</h2>
+        </div>
+
+        <div class="mockup-container">
+          <!-- Phone Mockup 1: Route Intelligence -->
+          <div class="mockup-item">
+            <div class="mockup-glow glow-primary"></div>
+            <div class="phone-shell">
+              <img class="phone-img" src="phone_mockup_1.jpg" alt="App Screen 1">
+            </div>
+          </div>
+
+          <!-- Phone Mockup 2: Map UI -->
+          <div class="mockup-item">
+            <div class="mockup-glow glow-tertiary"></div>
+            <div class="phone-shell">
+              <img class="phone-img"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjrJ-UP5UxY5N0FuUzAR8KE9b18d34DnnYRYS21c3xiN0eEVoePfc4FWkbXGQXCi2m7V5xRzSBWlnoUBjxlTVaR7NM5UGnW7G9bc1ON9Rw1ePMtC8xjGI_seSXlICw7IRACd34aGH8DEa3Wul4qmLAXuvPfOa2uyRAvZWSOK_1CxEyeGXg60TCvvX8rvVaPB57QlmmBkf4pfCEIjhs9od5ALmIcp4-SPjxyPnFVKgK2AD88Gx2qwPc9JlSbAWDYRiKXzKxzfYvVzo"
+                alt="iUnity App Map Interface">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section max-container" id="community">
+      <div class="cta-box" id="cta">
+        <div class="cta-glow"></div>
+        <h2 class="font-display-lg cta-title">"The Road is Long, But We Never Drive Alone."</h2>
+        <p class="font-body-lg cta-desc">Join the 1.2 million drivers who have already declared their unity. Reclaim
+          your sovereignty today.</p>
+
+        <div class="cta-buttons">
+          <button class="btn-primary" style="height: 56px; padding: 0 40px;" onclick="handleDownloadClick(event)">
+            <span class="material-symbols-outlined">smartphone</span>
+            Get it on Android OR iOS.
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="max-container footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">iUnity</div>
+        <div class="font-label-caps"
+          style="color: var(--on-surface-variant); margin-top: 4px; margin-bottom: 8px; font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase;">
+          Truck Owners and Drivers Association Global Network
+        </div>
+        <div class="font-label-caps footer-copy">© 2020. Driven by Unity. All Rights Reserved.</div>
+      </div>
+
+      <div class="footer-links">
+        <a class="font-label-caps footer-link" href="https://jointoda.com/privacy-policy/">Privacy Policy</a>
+        <a class="font-label-caps footer-link" href="child-safety.html">Child Safety</a>
+        <a class="font-label-caps footer-link" href="https://jointoda.com/resources/">Resources</a>
+        <a class="font-label-caps footer-link" href="#features">Solutions</a>
+        <a class="font-label-caps footer-link" href="https://jointoda.com/membership-form/">Contact Support</a>
+      </div>
+    </div>
+    <div class="max-container" style="margin-top: 48px;">
+      <div class="road-line" style="opacity: 0.2;"></div>
+    </div>
+  </footer>
+
+  <!-- Under Construction Modal -->
+  <div id="construction-modal" class="modal-overlay" onclick="closeModalOnOverlay(event)">
+    <div class="glass-card modal-content">
+      <span class="material-symbols-outlined modal-icon">construction</span>
+      <h3 class="font-headline-lg modal-title">Relay Under Calibration</h3>
+      <p class="font-body-md modal-text">
+        The iUnity secure communications protocol is currently undergoing final deployment phases. Signal sync will be
+        online shortly.
+      </p>
+      <button class="btn-primary" style="padding: 12px 32px;" onclick="closeModal()">Acknowledge Signal</button>
+    </div>
+  </div>
+
+  <!-- Core Javascript Logic -->
+  <script src="main.js?v=4"></script>
+</body>
+
+</html>

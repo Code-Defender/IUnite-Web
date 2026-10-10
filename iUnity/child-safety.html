@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>Child Safety Standards | iUnity</title>
+  <meta name="description"
+    content="Read iUnity's Child Safety Standards, reporting process, and commitment to preventing child sexual abuse and exploitation while maintaining a safe community.">
+  <meta name="keywords"
+    content="iUnity, TODA, Child Safety Standards, CSAE, CSAM, child protection, community safety, Google Play policy">
+  <meta name="author" content="TODA">
+  <link rel="canonical" href="https://app.jointoda.com/iUnity/child-safety.html">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:,">
+
+  <!-- Styling & Typography Links -->
+  <link rel="stylesheet" href="style.css?v=12">
+</head>
+
+<body class="bg-background text-on-surface">
+
+  <!-- Parallax Background Atmosphere Blobs -->
+  <div class="ambient-blob blob-primary" id="blob-primary"></div>
+  <div class="ambient-blob blob-tertiary" id="blob-tertiary"></div>
+
+  <!-- Top Navigation Bar -->
+  <header class="header-nav">
+    <div class="max-container nav-container">
+      <a href="index.html" class="nav-logo">iUnity</a>
+
+      <nav class="nav-links">
+        <a class="nav-link" href="index.html#features">Features</a>
+        <a class="nav-link" href="index.html#how-it-works">How It Works</a>
+        <a class="nav-link" href="index.html#app-preview">App Preview</a>
+        <a class="nav-link" href="index.html#community">Community</a>
+      </nav>
+
+      <button class="btn-primary" onclick="handleDownloadClick(event)">
+        Download Now
+      </button>
+
+      <!-- Hamburger Icon for Mobile -->
+      <button class="mobile-menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Side Navigation Overlay -->
+  <div class="mobile-nav-overlay" id="mobile-nav">
+    <a class="mobile-nav-link" href="index.html#features" onclick="toggleMobileMenu()">Features</a>
+    <a class="mobile-nav-link" href="index.html#how-it-works" onclick="toggleMobileMenu()">How It Works</a>
+    <a class="mobile-nav-link" href="index.html#app-preview" onclick="toggleMobileMenu()">App Preview</a>
+    <a class="mobile-nav-link" href="index.html#community" onclick="toggleMobileMenu()">Community</a>
+    <button class="btn-primary" onclick="toggleMobileMenu(); handleDownloadClick(event)">Download Now</button>
+  </div>
+
+  <main style="margin-top: clamp(56px, 8vw, 80px);">
+    <!-- Page Hero Section -->
+    <section class="hero-section max-container" style="min-height: auto; padding-top: clamp(40px, 6vw, 90px); padding-bottom: clamp(24px, 4vw, 48px);">
+      <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+        <div class="hero-badge" style="margin-bottom: 12px; justify-content: center;">
+          <span class="unity-signal"></span>
+          <span class="font-label-caps" style="color: var(--on-surface-variant);">SAFETY & TRUST</span>
+        </div>
+
+        <h1 class="font-display-lg hero-title" style="margin-bottom: 16px;">
+          Child Safety Standards
+        </h1>
+
+        <div class="font-label-caps" style="color: var(--primary); margin-bottom: 24px; font-weight: 600; letter-spacing: 0.08em;">
+          EFFECTIVE DATE: JULY 24, 2026
+        </div>
+
+        <p class="font-body-lg hero-desc" style="max-width: 720px; margin: 0 auto;">
+          At <strong>iUnity</strong>, we are committed to providing a safe environment for all users. We have zero tolerance for child sexual abuse and exploitation (CSAE) or any content or behavior that endangers children.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content Cards Section -->
+    <section class="max-container policy-container">
+      
+      <!-- Card 1: Our Commitment -->
+      <article class="glass-card policy-card">
+        <div class="policy-card-header">
+          <div class="policy-icon-wrapper">
+            <span class="material-symbols-outlined policy-icon">shield</span>
+          </div>
+          <h2 class="font-headline-lg policy-card-title">Our Commitment</h2>
+        </div>
+
+        <p class="font-body-md policy-text">
+          iUnity is designed to foster positive community engagement while maintaining a safe platform for everyone.
+        </p>
+
+        <p class="font-body-md policy-subheading">
+          We strictly prohibit:
+        </p>
+
+        <ul class="policy-list">
+          <li class="policy-list-item">
+            <span class="material-symbols-outlined">block</span>
+            <span>Child sexual abuse material (CSAM)</span>
+          </li>
+          <li class="policy-list-item">
+            <span class="material-symbols-outlined">block</span>
+            <span>Child sexual exploitation or abuse</span>
+          </li>
+          <li class="policy-list-item">
+            <span class="material-symbols-outlined">block</span>
+            <span>Grooming or predatory behavior</span>
+          </li>
+          <li class="policy-list-item">
+            <span class="material-symbols-outlined">block</span>
+            <span>Sexualization or exploitation of minors</span>
+          </li>
+          <li class="policy-list-item">
+            <span class="material-symbols-outlined">block</span>
+            <span>Any content that violates applicable child protection laws</span>
+          </li>
+        </ul>
+      </article>
+
+      <!-- Card 2: Reporting Safety Concerns -->
+      <article class="glass-card policy-card">
+        <div class="policy-card-header">
+          <div class="policy-icon-wrapper">
+            <span class="material-symbols-outlined policy-icon">report</span>
+          </div>
+          <h2 class="font-headline-lg policy-card-title">Reporting Safety Concerns</h2>
+        </div>
+
+        <p class="font-body-md policy-text">
+          If you become aware of content or behavior that may violate these standards, please report it immediately.
+        </p>
+
+        <div class="glass-card" style="background: rgba(255, 193, 116, 0.05); border-color: rgba(255, 193, 116, 0.2); padding: 16px 24px; margin: 16px 0;">
+          <p class="font-body-md" style="margin: 0; color: var(--on-surface);">
+            <strong>Email:</strong>
+            <a href="mailto:admin@jointoda.com" class="email-highlight">
+              admin@jointoda.com
+            </a>
+          </p>
+        </div>
+
+        <p class="font-body-md policy-text">
+          We review all reports promptly and take appropriate action, which may include:
+        </p>
+
+        <ul class="policy-list">
+          <li class="policy-list-item">
+            <span class="material-symbols-outlined">check_circle</span>
+            <span>Removing violating content</span>
+          </li>
+          <li class="policy-list-item">
+            <span class="material-symbols-outlined">check_circle</span>
+            <span>Suspending or permanently banning accounts</span>
+          </li>
+          <li class="policy-list-item">
+            <span class="material-symbols-outlined">check_circle</span>
+            <span>Cooperating with law enforcement where required by applicable laws</span>
+          </li>
+        </ul>
+      </article>
+
+      <!-- Card 3: Compliance -->
+      <article class="glass-card policy-card">
+        <div class="policy-card-header">
+          <div class="policy-icon-wrapper">
+            <span class="material-symbols-outlined policy-icon">gavel</span>
+          </div>
+          <h2 class="font-headline-lg policy-card-title">Compliance</h2>
+        </div>
+
+        <p class="font-body-md policy-text">
+          iUnity complies with applicable child safety laws and Google Play's Child Safety Standards policy.
+        </p>
+
+        <p class="font-body-md policy-text">
+          We continuously improve our moderation systems, reporting processes, and platform safety measures to help protect children and maintain a secure community for all users.
+        </p>
+      </article>
+
+      <!-- Card 4: Contact -->
+      <article class="glass-card policy-card">
+        <div class="policy-card-header">
+          <div class="policy-icon-wrapper">
+            <span class="material-symbols-outlined policy-icon">mail</span>
+          </div>
+          <h2 class="font-headline-lg policy-card-title">Contact</h2>
+        </div>
+
+        <p class="font-body-md policy-text">
+          For questions regarding child safety or this policy, please contact:
+        </p>
+
+        <div class="glass-card" style="background: rgba(255, 193, 116, 0.05); border-color: rgba(255, 193, 116, 0.2); padding: 16px 24px; margin-top: 16px;">
+          <p class="font-body-md" style="margin: 0; color: var(--on-surface);">
+            <strong>Email:</strong>
+            <a href="mailto:admin@jointoda.com" class="email-highlight">
+              admin@jointoda.com
+            </a>
+          </p>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="max-container footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">iUnity</div>
+        <div class="font-label-caps"
+          style="color: var(--on-surface-variant); margin-top: 4px; margin-bottom: 8px; font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase;">
+          Truck Owners and Drivers Association Global Network
+        </div>
+        <div class="font-label-caps footer-copy">© 2020. Driven by Unity. All Rights Reserved.</div>
+      </div>
+
+      <div class="footer-links">
+        <a class="font-label-caps footer-link" href="https://jointoda.com/privacy-policy/">Privacy Policy</a>
+        <a class="font-label-caps footer-link active" href="child-safety.html">Child Safety</a>
+        <a class="font-label-caps footer-link" href="https://jointoda.com/resources/">Resources</a>
+        <a class="font-label-caps footer-link" href="index.html#features">Solutions</a>
+        <a class="font-label-caps footer-link" href="https://jointoda.com/membership-form/">Contact Support</a>
+      </div>
+    </div>
+    <div class="max-container" style="margin-top: 48px;">
+      <div class="road-line" style="opacity: 0.2;"></div>
+    </div>
+  </footer>
+
+  <!-- Under Construction Modal -->
+  <div id="construction-modal" class="modal-overlay" onclick="closeModalOnOverlay(event)">
+    <div class="glass-card modal-content">
+      <span class="material-symbols-outlined modal-icon">construction</span>
+      <h3 class="font-headline-lg modal-title">Relay Under Calibration</h3>
+      <p class="font-body-md modal-text">
+        The iUnity secure communications protocol is currently undergoing final deployment phases. Signal sync will be
+        online shortly.
+      </p>
+      <button class="btn-primary" style="padding: 12px 32px;" onclick="closeModal()">Acknowledge Signal</button>
+    </div>
+  </div>
+
+  <!-- Core Javascript Logic -->
+  <script src="main.js?v=4"></script>
+</body>
+
+</html>

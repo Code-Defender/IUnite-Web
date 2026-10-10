@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>Application Portal | iUnity & iTrucker</title>
+  <meta name="description"
+    content="Access official applications: iUnity for global driver solidarity and iTrucker for next-gen fleet operations.">
+  <meta name="author" content="Truck Owners and Drivers Association">
+  <link rel="canonical" href="https://app.jointoda.com/">
+
+  <!-- Google Fonts: Inter & JetBrains Mono (Matches iUnity Design Language) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+  <style>
+    /* =========================================================
+       TODA Unified Design System — Matched to iUnity Core Tokens
+       ========================================================= */
+    :root {
+      /* Base Surface / Obsidian Charcoal Palette */
+      --background: #131313;
+      --on-background: #e5e2e1;
+      --surface: #131313;
+      --surface-dim: #131313;
+      --surface-bright: #393939;
+
+      --surface-container-lowest: #0e0e0e;
+      --surface-container-low: #1c1b1b;
+      --surface-container: #201f1f;
+      --surface-container-high: #2a2a2a;
+      --surface-container-highest: #353534;
+
+      --on-surface: #e5e2e1;
+      --on-surface-variant: #d8c3ad;
+
+      --outline: #a08e7a;
+      --outline-variant: #534434;
+
+      /* Primary Unity Amber Accent */
+      --primary: #ffc174;
+      --primary-container: #f59e0b;
+      --on-primary: #472a00;
+      --on-primary-container: #613b00;
+      --primary-fixed: #ffddb8;
+      --primary-fixed-dim: #ffb95f;
+      --primary-glow: rgba(245, 158, 11, 0.28);
+
+      /* Tertiary / Fleet Cyan Accent (iTrucker) */
+      --tertiary: #8fd5ff;
+      --tertiary-container: #1abdff;
+      --on-tertiary: #00344a;
+      --cyan-glow: rgba(26, 189, 255, 0.28);
+
+      /* Border Radii */
+      --radius-sm: 0.25rem;
+      --radius-default: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: clamp(1rem, 2vw, 1.5rem);
+      --radius-full: 9999px;
+
+      /* Animation Transitions */
+      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--background);
+      color: var(--on-surface);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient Highway Glows */
+    .ambient-blob {
+      position: fixed;
+      border-radius: var(--radius-full);
+      filter: blur(140px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.28;
+      transition: transform 0.15s ease-out;
+    }
+
+    .blob-1 {
+      width: clamp(320px, 45vw, 650px);
+      height: clamp(320px, 45vw, 650px);
+      background: radial-gradient(circle, var(--primary), transparent 70%);
+      top: -120px;
+      left: -120px;
+    }
+
+    .blob-2 {
+      width: clamp(340px, 50vw, 700px);
+      height: clamp(340px, 50vw, 700px);
+      background: radial-gradient(circle, var(--tertiary-container), transparent 70%);
+      bottom: -160px;
+      right: -120px;
+    }
+
+    /* Subtle Highway Grid Overlay */
+    .grid-pattern {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(83, 68, 52, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(83, 68, 52, 0.05) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.7;
+    }
+
+    /* Header Nav */
+    header {
+      position: relative;
+      z-index: 10;
+      padding: clamp(16px, 2vw, 24px) clamp(20px, 4vw, 48px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(83, 68, 52, 0.2);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(19, 19, 19, 0.85);
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--on-surface);
+    }
+
+    .brand-title {
+      font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--on-surface);
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      position: relative;
+      z-index: 10;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: clamp(40px, 6vw, 72px) clamp(16px, 3vw, 32px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-heading {
+      text-align: center;
+      max-width: 720px;
+      margin-bottom: clamp(36px, 5vw, 56px);
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.22);
+      border-radius: var(--radius-full);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(0.6875rem, 0.3vw + 0.55rem, 0.75rem);
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-size: clamp(1.85rem, 3.8vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+      color: var(--on-surface);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.925rem, 0.5vw + 0.75rem, 1.1rem);
+      color: var(--on-surface-variant);
+      line-height: 1.6;
+    }
+
+    /* Apps Grid */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: clamp(24px, 3vw, 36px);
+      width: 100%;
+      max-width: 960px;
+    }
+
+    /* Glass App Cards */
+    .app-card {
+      background: rgba(31, 41, 55, 0.35);
+      border: 1px solid rgba(83, 68, 52, 0.25);
+      border-radius: var(--radius-xl);
+      padding: clamp(28px, 3vw, 36px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal), background-color var(--transition-normal);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+    }
+
+    .app-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: transparent;
+      transition: background var(--transition-normal);
+    }
+
+    /* iUnity Card Accents */
+    .app-card-iunity:hover {
+      transform: translateY(-6px);
+      border-color: var(--primary);
+      box-shadow: 0 25px 50px -15px var(--primary-glow);
+      background: rgba(31, 41, 55, 0.5);
+    }
+
+    .app-card-iunity::before {
+      background: linear-gradient(90deg, var(--primary), var(--primary-container));
+    }
+
+    /* iTrucker Card Accents */
+    .app-card-itrucker:hover {
+      transform: translateY(-6px);
+      border-color: var(--tertiary-container);
+      box-shadow: 0 25px 50px -15px var(--cyan-glow);
+      background: rgba(31, 41, 55, 0.5);
+    }
+
+    .app-card-itrucker::before {
+      background: linear-gradient(90deg, var(--tertiary), var(--tertiary-container));
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .app-icon-wrapper {
+      width: clamp(54px, 5vw, 64px);
+      height: clamp(54px, 5vw, 64px);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+    }
+
+    .iunity-icon {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--primary);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      box-shadow: 0 0 16px rgba(245, 158, 11, 0.15);
+    }
+
+    .itrucker-icon {
+      background: rgba(26, 189, 255, 0.12);
+      color: var(--tertiary-container);
+      border: 1px solid rgba(26, 189, 255, 0.25);
+      box-shadow: 0 0 16px rgba(26, 189, 255, 0.15);
+    }
+
+    /* Status Badges */
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+    }
+
+    .status-live {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--primary);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .status-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-full);
+      background: var(--primary-container);
+      box-shadow: 0 0 10px var(--primary-container);
+      animation: pulse 2s infinite;
+    }
+
+    .status-coming {
+      background: rgba(26, 189, 255, 0.1);
+      color: var(--tertiary);
+      border: 1px solid rgba(26, 189, 255, 0.3);
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+      }
+
+      70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 8px rgba(245, 158, 11, 0);
+      }
+
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+      }
+    }
+
+    .app-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+      color: var(--on-surface);
+    }
+
+    .app-desc {
+      color: var(--on-surface-variant);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-bottom: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: var(--on-surface);
+    }
+
+    .feature-item span.material-symbols-outlined {
+      font-size: 18px;
+    }
+
+    /* Buttons Layout & Styling */
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 12px;
+      width: 100%;
+      margin-top: auto;
+    }
+
+    .btn-launch,
+    .btn-learn-more {
+      width: 100%;
+      height: 50px;
+      border-radius: var(--radius-default);
+      font-weight: 700;
+      font-size: clamp(0.82rem, 0.3vw + 0.72rem, 0.92rem);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+      border: none;
+      white-space: nowrap;
+      padding: 0 14px;
+    }
+
+    .btn-iunity {
+      background: var(--primary-container);
+      color: var(--on-primary);
+      box-shadow: 0 4px 18px rgba(245, 158, 11, 0.35);
+    }
+
+    .btn-iunity:hover {
+      background: #ffb95f;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(245, 158, 11, 0.5);
+    }
+
+    .btn-iunity:active {
+      transform: translateY(0);
+    }
+
+    .btn-itrucker {
+      background: rgba(26, 189, 255, 0.12);
+      color: var(--tertiary);
+      border: 1px solid rgba(26, 189, 255, 0.3);
+    }
+
+    .btn-itrucker:hover {
+      background: rgba(26, 189, 255, 0.22);
+      border-color: var(--tertiary-container);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px var(--cyan-glow);
+    }
+
+    .btn-itrucker:active {
+      transform: translateY(0);
+    }
+
+    /* Learn More Secondary Glass Button */
+    .btn-learn-more {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--on-surface);
+      border: 1px solid rgba(83, 68, 52, 0.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .app-card-iunity .btn-learn-more:hover {
+      background: rgba(245, 158, 11, 0.12);
+      border-color: rgba(245, 158, 11, 0.45);
+      color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.2);
+    }
+
+    .app-card-itrucker .btn-learn-more:hover {
+      background: rgba(26, 189, 255, 0.12);
+      border-color: rgba(26, 189, 255, 0.45);
+      color: var(--tertiary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(26, 189, 255, 0.2);
+    }
+
+    .btn-learn-more:active {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 480px) {
+      .card-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 10;
+      padding: 32px 24px;
+      text-align: center;
+      color: var(--on-surface-variant);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      border-top: 1px solid rgba(83, 68, 52, 0.2);
+    }
+
+    footer a {
+      color: var(--on-surface-variant);
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color var(--transition-fast);
+    }
+
+    footer a:hover {
+      color: var(--primary);
+    }
+
+    /* Modal for iTrucker preview */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(14, 14, 14, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-normal);
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      background: var(--surface-container-high);
+      border: 1px solid rgba(26, 189, 255, 0.3);
+      border-radius: var(--radius-xl);
+      padding: clamp(28px, 4vw, 40px);
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      background: rgba(26, 189, 255, 0.12);
+      border: 1px solid rgba(26, 189, 255, 0.3);
+      border-radius: var(--radius-full);
+      color: var(--tertiary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Ambient highway grid texture & glowing blobs -->
+  <div class="grid-pattern" aria-hidden="true"></div>
+  <div class="ambient-blob blob-1" id="blob-1" aria-hidden="true"></div>
+  <div class="ambient-blob blob-2" id="blob-2" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header>
+    <a href="#" class="brand-logo">
+      <span class="brand-title">Truck Owners and Drivers Association</span>
+    </a>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="hero-heading">
+      <div class="hero-pill">
+        <span class="material-symbols-outlined" style="font-size: 16px;">hub</span>
+        <span>TRUCK OWNERS & DRIVERS ASSOCIATION</span>
+      </div>
+      <h1 class="hero-title">Select Your Platform</h1>
+      <p class="hero-subtitle">Access global trucking solidarity, route intelligence, and sovereign logistics mapping
+        through our specialized application network.</p>
+    </div>
+
+    <div class="apps-grid">
+      <!-- App Card 1: iUnity -->
+      <div class="app-card app-card-iunity">
+        <div>
+          <div class="card-header">
+            <div class="app-icon-wrapper iunity-icon">
+              <span class="material-symbols-outlined">groups</span>
+            </div>
+            <div class="status-badge status-live">
+              <span class="status-pulse"></span>
+              Live Signal
+            </div>
+          </div>
+
+          <h2 class="app-title">iUnity</h2>
+          <p class="app-desc">The Global Trucking Solidarity Signal. Connect with 1.2M+ drivers worldwide, exchange
+            encrypted route intelligence, and reclaim highway advocacy.</p>
+
+          <ul class="feature-list">
+            <li class="feature-item">
+              <span class="material-symbols-outlined" style="color: var(--primary);">check_circle</span>
+              <span>Global Driver Solidarity Signal</span>
+            </li>
+            <li class="feature-item">
+              <span class="material-symbols-outlined" style="color: var(--primary);">check_circle</span>
+              <span>Encrypted Movement Mapping</span>
+            </li>
+            <li class="feature-item">
+              <span class="material-symbols-outlined" style="color: var(--primary);">check_circle</span>
+              <span>Community Convoy Voice</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card-actions">
+          <button class="btn-launch btn-iunity" onclick="handleDownloadClick(event)">
+            <span>Launch iUnity</span>
+            <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+          </button>
+          <a href="iUnity/" class="btn-learn-more">
+            <span>Learn More</span>
+            <span class="material-symbols-outlined" style="font-size: 18px;">arrow_outward</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- App Card 2: iTrucker -->
+      <div class="app-card app-card-itrucker">
+        <div>
+          <div class="card-header">
+            <div class="app-icon-wrapper itrucker-icon">
+              <span class="material-symbols-outlined">local_shipping</span>
+            </div>
+            <div class="status-badge status-coming">
+              <span class="material-symbols-outlined" style="font-size: 14px;">bolt</span>
+              Next-Gen Fleet
+            </div>
+          </div>
+
+          <h2 class="app-title">iTrucker</h2>
+          <p class="app-desc">Next-Gen Driver & Fleet Operations Platform. Streamlined load management, smart dispatch
+            routing, and real-time telematics control center.</p>
+
+          <ul class="feature-list">
+            <li class="feature-item">
+              <span class="material-symbols-outlined" style="color: var(--tertiary);">check_circle</span>
+              <span>Driver Dispatch & Load Control</span>
+            </li>
+            <li class="feature-item">
+              <span class="material-symbols-outlined" style="color: var(--tertiary);">check_circle</span>
+              <span>Automated Route Optimization</span>
+            </li>
+            <li class="feature-item">
+              <span class="material-symbols-outlined" style="color: var(--tertiary);">check_circle</span>
+              <span>Fleet Telematics Sync</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card-actions">
+          <button onclick="openITruckerModal()" class="btn-launch btn-itrucker">
+            <span>Launch iTrucker</span>
+            <span class="material-symbols-outlined" style="font-size: 18px;">open_in_new</span>
+          </button>
+          <a href="iTrucker/" class="btn-learn-more">
+            <span>Learn More</span>
+            <span class="material-symbols-outlined" style="font-size: 18px;">info</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 TODA (Truck Owners and Drivers Association Global Network). Driven by Unity.</p>
+    <p style="margin-top: 12px;">
+      <a href="https://jointoda.com">Main Website</a> |
+      <a href="iUnity/child-safety.html">Child Safety</a> |
+      <a href="https://jointoda.com/privacy-policy/">Privacy Policy</a>
+    </p>
+  </footer>
+
+  <!-- Modal for iTrucker preview -->
+  <div id="itrucker-modal" class="modal-overlay" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-box">
+      <div style="margin-bottom: 16px;">
+        <span class="material-symbols-outlined"
+          style="font-size: 56px; color: var(--tertiary-container);">construction</span>
+      </div>
+      <div>
+        <span class="modal-badge">
+          <span class="material-symbols-outlined" style="font-size: 14px;">engineering</span>
+          UNDER DEVELOPMENT
+        </span>
+      </div>
+      <h3 style="font-size: 1.65rem; font-weight: 800; margin-bottom: 12px; color: var(--on-surface);">App Under
+        Development</h3>
+      <p style="color: var(--on-surface-variant); font-size: 0.95rem; line-height: 1.6; margin-bottom: 28px;">
+        The <strong>iTrucker</strong> fleet dispatch and driver operations system is currently under active development.
+        Signal sync and enterprise tools will be coming online soon.
+      </p>
+      <div style="display: flex; gap: 12px; justify-content: center;">
+        <button onclick="closeITruckerModal()" class="btn-launch btn-itrucker" style="width: auto; padding: 0 36px;">
+          <span>Acknowledge Signal</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Automatic device detection for iUnity app download
+    const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.jointoda.iunity&pcampaignid=web_share';
+    const APP_STORE_URL = 'https://apps.apple.com/us/app/iunity-for-truckers/id6792612777';
+
+    function getAppDownloadUrl() {
+      const ua = navigator.userAgent || '';
+      const isTraditionalIOS = /iPhone|iPad|iPod/i.test(ua);
+      const isModernIPad = (navigator.platform === 'MacIntel' || /Macintosh/i.test(ua)) && navigator.maxTouchPoints > 1;
+
+      if (isTraditionalIOS || isModernIPad) {
+        return APP_STORE_URL;
+      }
+      return PLAY_STORE_URL;
+    }
+
+    let isRedirecting = false;
+    function handleDownloadClick(event) {
+      if (event) {
+        event.preventDefault();
+      }
+      if (isRedirecting) {
+        return;
+      }
+      isRedirecting = true;
+      window.location.href = getAppDownloadUrl();
+      setTimeout(() => {
+        isRedirecting = false;
+      }, 2500);
+    }
+
+    function openITruckerModal() {
+      const modal = document.getElementById('itrucker-modal');
+      if (modal) modal.classList.add('open');
+    }
+    function closeITruckerModal() {
+      const modal = document.getElementById('itrucker-modal');
+      if (modal) modal.classList.remove('open');
+    }
+    function closeModalOnBackdrop(e) {
+      if (e.target.id === 'itrucker-modal') closeITruckerModal();
+    }
+
+    // Smooth subtle parallax ambient blobs on mouse move
+    window.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 35;
+      const y = (e.clientY / window.innerHeight - 0.5) * 35;
+      const blob1 = document.getElementById('blob-1');
+      const blob2 = document.getElementById('blob-2');
+      if (blob1) blob1.style.transform = `translate(${x}px, ${y}px)`;
+      if (blob2) blob2.style.transform = `translate(${-x}px, ${-y}px)`;
+    });
+  </script>
+</body>
+
+</html>
