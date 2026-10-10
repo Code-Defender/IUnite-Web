@@ -18,7 +18,7 @@
   <link rel="icon" href="data:,">
 
   <!-- Styling & Typography Links -->
-  <link rel="stylesheet" href="style.css?v=13">
+  <link rel="stylesheet" href="style.css?v=14">
 </head>
 
 <body class="bg-background text-on-surface">
@@ -39,7 +39,7 @@
         <a class="nav-link" href="#community">Community</a>
       </nav>
 
-      <button class="btn-primary" onclick="handleDownloadClick(event)">
+      <button class="btn-primary" data-action="download" onclick="handleDownloadClick(event)">
         Download Now
       </button>
 
@@ -58,10 +58,10 @@
     <a class="mobile-nav-link" href="#how-it-works" onclick="toggleMobileMenu()">How It Works</a>
     <a class="mobile-nav-link" href="#app-preview" onclick="toggleMobileMenu()">App Preview</a>
     <a class="mobile-nav-link" href="#community" onclick="toggleMobileMenu()">Community</a>
-    <button class="btn-primary" onclick="toggleMobileMenu(); handleDownloadClick(event)">Download Now</button>
+    <button class="btn-primary" data-action="download" onclick="toggleMobileMenu(); handleDownloadClick(event)">Download Now</button>
   </div>
 
-  <main style="margin-top: clamp(56px, 8vw, 80px);">
+  <main class="site-main">
     <!-- Hero Section -->
     <section class="hero-section max-container">
       <div class="hero-grid">
@@ -108,7 +108,7 @@
             <h3 class="download-heading font-headline-lg">Get iUnity</h3>
             <p class="download-desc font-body-md">Connect with the global trucking community. Unite your voice and stay
               connected on the road.</p>
-            <button class="btn-primary download-btn" id="download-btn" onclick="handleDownloadClick(event)">
+            <button class="btn-primary download-btn" id="download-btn" data-action="download" onclick="handleDownloadClick(event)">
               <span class="material-symbols-outlined" aria-hidden="true">download</span>
               <span>Download iUnity</span>
             </button>
@@ -255,7 +255,7 @@
           your sovereignty today.</p>
 
         <div class="cta-buttons">
-          <button class="btn-primary" style="height: 56px; padding: 0 40px;" onclick="handleDownloadClick(event)">
+          <button class="btn-primary" style="height: 56px; padding: 0 40px;" data-action="download" onclick="handleDownloadClick(event)">
             <span class="material-symbols-outlined">smartphone</span>
             Get it on Android OR iOS.
           </button>
@@ -298,12 +298,13 @@
         The iUnity secure communications protocol is currently undergoing final deployment phases. Signal sync will be
         online shortly.
       </p>
-      <button class="btn-primary" style="padding: 12px 32px;" onclick="closeModal()">Acknowledge Signal</button>
+      <button class="btn-primary" style="padding: 12px 32px;" data-action="close-modal" onclick="closeModal()">Acknowledge Signal</button>
     </div>
   </div>
 
   <!-- Core Javascript Logic -->
-  <script src="main.js?v=4"></script>
+  <script src="../shared/app-detection.js?v=14"></script>
+  <script src="main.js?v=14"></script>
 </body>
 
 </html>

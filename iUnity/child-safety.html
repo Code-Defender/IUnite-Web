@@ -18,7 +18,7 @@
   <link rel="icon" href="data:,">
 
   <!-- Styling & Typography Links -->
-  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="style.css?v=14">
 </head>
 
 <body class="bg-background text-on-surface">
@@ -39,7 +39,7 @@
         <a class="nav-link" href="index.html#community">Community</a>
       </nav>
 
-      <button class="btn-primary" onclick="handleDownloadClick(event)">
+      <button class="btn-primary" data-action="download" onclick="handleDownloadClick(event)">
         Download Now
       </button>
 
@@ -58,10 +58,10 @@
     <a class="mobile-nav-link" href="index.html#how-it-works" onclick="toggleMobileMenu()">How It Works</a>
     <a class="mobile-nav-link" href="index.html#app-preview" onclick="toggleMobileMenu()">App Preview</a>
     <a class="mobile-nav-link" href="index.html#community" onclick="toggleMobileMenu()">Community</a>
-    <button class="btn-primary" onclick="toggleMobileMenu(); handleDownloadClick(event)">Download Now</button>
+    <button class="btn-primary" data-action="download" onclick="toggleMobileMenu(); handleDownloadClick(event)">Download Now</button>
   </div>
 
-  <main style="margin-top: clamp(56px, 8vw, 80px);">
+  <main class="site-main">
     <!-- Page Hero Section -->
     <section class="hero-section max-container" style="min-height: auto; padding-top: clamp(40px, 6vw, 90px); padding-bottom: clamp(24px, 4vw, 48px);">
       <div style="max-width: 800px; margin: 0 auto; text-align: center;">
@@ -248,12 +248,13 @@
         The iUnity secure communications protocol is currently undergoing final deployment phases. Signal sync will be
         online shortly.
       </p>
-      <button class="btn-primary" style="padding: 12px 32px;" onclick="closeModal()">Acknowledge Signal</button>
+      <button class="btn-primary" style="padding: 12px 32px;" data-action="close-modal" onclick="closeModal()">Acknowledge Signal</button>
     </div>
   </div>
 
   <!-- Core Javascript Logic -->
-  <script src="main.js?v=4"></script>
+  <script src="../shared/app-detection.js?v=14"></script>
+  <script src="main.js?v=14"></script>
 </body>
 
 </html>

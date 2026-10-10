@@ -21,86 +21,17 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
+  <!-- Shared Design Tokens & Theme -->
+  <link rel="stylesheet" href="shared/theme.css?v=14">
+
   <style>
-    /* =========================================================
-       TODA Unified Design System — Matched to iUnity Core Tokens
-       ========================================================= */
-    :root {
-      /* Base Surface / Obsidian Charcoal Palette */
-      --background: #131313;
-      --on-background: #e5e2e1;
-      --surface: #131313;
-      --surface-dim: #131313;
-      --surface-bright: #393939;
-
-      --surface-container-lowest: #0e0e0e;
-      --surface-container-low: #1c1b1b;
-      --surface-container: #201f1f;
-      --surface-container-high: #2a2a2a;
-      --surface-container-highest: #353534;
-
-      --on-surface: #e5e2e1;
-      --on-surface-variant: #d8c3ad;
-
-      --outline: #a08e7a;
-      --outline-variant: #534434;
-
-      /* Primary Unity Amber Accent */
-      --primary: #ffc174;
-      --primary-container: #f59e0b;
-      --on-primary: #472a00;
-      --on-primary-container: #613b00;
-      --primary-fixed: #ffddb8;
-      --primary-fixed-dim: #ffb95f;
-      --primary-glow: rgba(245, 158, 11, 0.28);
-
-      /* Tertiary / Fleet Cyan Accent (iTrucker) */
-      --tertiary: #8fd5ff;
-      --tertiary-container: #1abdff;
-      --on-tertiary: #00344a;
-      --cyan-glow: rgba(26, 189, 255, 0.28);
-
-      /* Border Radii */
-      --radius-sm: 0.25rem;
-      --radius-default: 0.5rem;
-      --radius-lg: 0.75rem;
-      --radius-xl: clamp(1rem, 2vw, 1.5rem);
-      --radius-full: 9999px;
-
-      /* Animation Transitions */
-      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    /* Portal-Specific Layout & Card Styles */
     body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background-color: var(--background);
-      color: var(--on-surface);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
       position: relative;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Ambient Highway Glows */
-    .ambient-blob {
-      position: fixed;
-      border-radius: var(--radius-full);
-      filter: blur(140px);
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.28;
-      transition: transform 0.15s ease-out;
     }
 
     .blob-1 {
@@ -117,19 +48,6 @@
       background: radial-gradient(circle, var(--tertiary-container), transparent 70%);
       bottom: -160px;
       right: -120px;
-    }
-
-    /* Subtle Highway Grid Overlay */
-    .grid-pattern {
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(83, 68, 52, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(83, 68, 52, 0.05) 1px, transparent 1px);
-      background-size: 48px 48px;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.7;
     }
 
     /* Header Nav */
@@ -626,7 +544,7 @@
         </div>
 
         <div class="card-actions">
-          <button class="btn-launch btn-iunity" onclick="handleDownloadClick(event)">
+          <button class="btn-launch btn-iunity" data-action="download-iunity" onclick="handleDownloadClick(event)">
             <span>Launch iUnity</span>
             <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
           </button>
@@ -671,7 +589,7 @@
         </div>
 
         <div class="card-actions">
-          <button onclick="openITruckerModal()" class="btn-launch btn-itrucker">
+          <button class="btn-launch btn-itrucker" data-action="open-itrucker-modal" onclick="openITruckerModal()">
             <span>Launch iTrucker</span>
             <span class="material-symbols-outlined" style="font-size: 18px;">open_in_new</span>
           </button>
@@ -714,65 +632,97 @@
         Signal sync and enterprise tools will be coming online soon.
       </p>
       <div style="display: flex; gap: 12px; justify-content: center;">
-        <button onclick="closeITruckerModal()" class="btn-launch btn-itrucker" style="width: auto; padding: 0 36px;">
+        <button class="btn-launch btn-itrucker" data-action="close-itrucker-modal" onclick="closeITruckerModal()" style="width: auto; padding: 0 36px;">
           <span>Acknowledge Signal</span>
         </button>
       </div>
     </div>
   </div>
 
+  <!-- Centralized App Detection Script -->
+  <script src="shared/app-detection.js?v=14"></script>
+
   <script>
-    // Automatic device detection for iUnity app download
-    const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.jointoda.iunity&pcampaignid=web_share';
-    const APP_STORE_URL = 'https://apps.apple.com/us/app/iunity-for-truckers/id6792612777';
+    (function () {
+      'use strict';
 
-    function getAppDownloadUrl() {
-      const ua = navigator.userAgent || '';
-      const isTraditionalIOS = /iPhone|iPad|iPod/i.test(ua);
-      const isModernIPad = (navigator.platform === 'MacIntel' || /Macintosh/i.test(ua)) && navigator.maxTouchPoints > 1;
+      var PARALLAX_FACTOR = 35;
 
-      if (isTraditionalIOS || isModernIPad) {
-        return APP_STORE_URL;
+      function openITruckerModal() {
+        var modal = document.getElementById('itrucker-modal');
+        if (modal) modal.classList.add('open');
       }
-      return PLAY_STORE_URL;
-    }
 
-    let isRedirecting = false;
-    function handleDownloadClick(event) {
-      if (event) {
-        event.preventDefault();
+      function closeITruckerModal() {
+        var modal = document.getElementById('itrucker-modal');
+        if (modal) modal.classList.remove('open');
       }
-      if (isRedirecting) {
-        return;
+
+      function closeModalOnBackdrop(e) {
+        if (e && e.target && e.target.id === 'itrucker-modal') {
+          closeITruckerModal();
+        }
       }
-      isRedirecting = true;
-      window.location.href = getAppDownloadUrl();
-      setTimeout(() => {
-        isRedirecting = false;
-      }, 2500);
-    }
 
-    function openITruckerModal() {
-      const modal = document.getElementById('itrucker-modal');
-      if (modal) modal.classList.add('open');
-    }
-    function closeITruckerModal() {
-      const modal = document.getElementById('itrucker-modal');
-      if (modal) modal.classList.remove('open');
-    }
-    function closeModalOnBackdrop(e) {
-      if (e.target.id === 'itrucker-modal') closeITruckerModal();
-    }
+      function handleDownloadClick(event) {
+        if (window.TODA_APP && typeof window.TODA_APP.handleDownloadClick === 'function') {
+          window.TODA_APP.handleDownloadClick(event);
+        }
+      }
 
-    // Smooth subtle parallax ambient blobs on mouse move
-    window.addEventListener('mousemove', (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 35;
-      const y = (e.clientY / window.innerHeight - 0.5) * 35;
-      const blob1 = document.getElementById('blob-1');
-      const blob2 = document.getElementById('blob-2');
-      if (blob1) blob1.style.transform = `translate(${x}px, ${y}px)`;
-      if (blob2) blob2.style.transform = `translate(${-x}px, ${-y}px)`;
-    });
+      // Parallax ambient background animation throttled with requestAnimationFrame
+      var ticking = false;
+      var blob1 = document.getElementById('blob-1');
+      var blob2 = document.getElementById('blob-2');
+
+      if (blob1 || blob2) {
+        var mouseX = 0;
+        var mouseY = 0;
+
+        window.addEventListener('mousemove', function (e) {
+          mouseX = (e.clientX / window.innerWidth - 0.5) * PARALLAX_FACTOR;
+          mouseY = (e.clientY / window.innerHeight - 0.5) * PARALLAX_FACTOR;
+
+          if (!ticking) {
+            window.requestAnimationFrame(function () {
+              if (blob1) blob1.style.transform = 'translate(' + mouseX + 'px, ' + mouseY + 'px)';
+              if (blob2) blob2.style.transform = 'translate(' + (-mouseX) + 'px, ' + (-mouseY) + 'px)';
+              ticking = false;
+            });
+            ticking = true;
+          }
+        });
+      }
+
+      // Event listener registration
+      document.addEventListener('DOMContentLoaded', function () {
+        var iunityBtn = document.querySelector('[data-action="download-iunity"]');
+        if (iunityBtn) {
+          iunityBtn.addEventListener('click', handleDownloadClick);
+        }
+
+        var openModalBtn = document.querySelector('[data-action="open-itrucker-modal"]');
+        if (openModalBtn) {
+          openModalBtn.addEventListener('click', openITruckerModal);
+        }
+
+        var closeModalBtn = document.querySelector('[data-action="close-itrucker-modal"]');
+        if (closeModalBtn) {
+          closeModalBtn.addEventListener('click', closeITruckerModal);
+        }
+
+        var modalOverlay = document.getElementById('itrucker-modal');
+        if (modalOverlay) {
+          modalOverlay.addEventListener('click', closeModalOnBackdrop);
+        }
+      });
+
+      // Export globally for backward compatibility
+      window.openITruckerModal = openITruckerModal;
+      window.closeITruckerModal = closeITruckerModal;
+      window.closeModalOnBackdrop = closeModalOnBackdrop;
+      window.handleDownloadClick = handleDownloadClick;
+    })();
   </script>
 </body>
 
